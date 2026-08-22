@@ -1,369 +1,1028 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1000" viewBox="0 0 1440 1000">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#070910"/>
-      <stop offset="0.5" stop-color="#0b0e17"/>
-      <stop offset="1" stop-color="#06070c"/>
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="100%"
+     height="100%"
+     viewBox="0 0 1440 1000"
+     preserveAspectRatio="xMidYMid slice">
+
+<defs>
+
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#05070c"/>
+        <stop offset="50%" stop-color="#0b0e16"/>
+        <stop offset="100%" stop-color="#05060a"/>
     </linearGradient>
 
     <linearGradient id="red" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#ff454f"/>
-      <stop offset="1" stop-color="#e50920"/>
+        <stop offset="0%" stop-color="#ff5967"/>
+        <stop offset="45%" stop-color="#ff263d"/>
+        <stop offset="100%" stop-color="#c9001c"/>
     </linearGradient>
 
-    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#151923"/>
-      <stop offset="1" stop-color="#0e1119"/>
+    <linearGradient id="button" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#ff4050"/>
+        <stop offset="100%" stop-color="#d90e26"/>
     </linearGradient>
 
-    <radialGradient id="glow">
-      <stop offset="0" stop-color="#ff1f35" stop-opacity=".28"/>
-      <stop offset="1" stop-color="#ff1f35" stop-opacity="0"/>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#151923"/>
+        <stop offset="100%" stop-color="#0c0f16"/>
+    </linearGradient>
+
+    <radialGradient id="redGlow">
+        <stop offset="0%" stop-color="#ff2038" stop-opacity=".32"/>
+        <stop offset="100%" stop-color="#ff2038" stop-opacity="0"/>
     </radialGradient>
 
-    <filter id="shadow">
-      <feGaussianBlur stdDeviation="18"/>
-    </filter>
+    <radialGradient id="heroGlow">
+        <stop offset="0%" stop-color="#ff2638" stop-opacity=".18"/>
+        <stop offset="60%" stop-color="#ff2638" stop-opacity=".04"/>
+        <stop offset="100%" stop-color="#ff2638" stop-opacity="0"/>
+    </radialGradient>
 
-    <filter id="redGlow">
-      <feGaussianBlur stdDeviation="5" result="blur"/>
-      <feMerge>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-
-    <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
-      <path d="M50 0H0V50" fill="none" stroke="#ffffff" stroke-opacity=".025"/>
+    <pattern id="grid" width="45" height="45" patternUnits="userSpaceOnUse">
+        <path d="M45 0H0V45"
+              fill="none"
+              stroke="#ffffff"
+              stroke-opacity=".035"/>
     </pattern>
-  </defs>
 
-  <!-- Background -->
-  <rect width="1440" height="1000" fill="url(#bg)"/>
-  <rect width="1440" height="1000" fill="url(#grid)"/>
+    <filter id="glow">
+        <feGaussianBlur stdDeviation="8"/>
+    </filter>
 
-  <!-- Ambient glow -->
-  <ellipse cx="1100" cy="300" rx="400" ry="350" fill="url(#glow)"/>
-  <ellipse cx="350" cy="700" rx="350" ry="250" fill="url(#glow)" opacity=".18"/>
+    <filter id="softGlow">
+        <feGaussianBlur stdDeviation="30"/>
+    </filter>
 
-  <!-- NAVBAR -->
-  <rect x="0" y="0" width="1440" height="82" fill="#080a11" fill-opacity=".9"/>
-  <line x1="0" y1="81" x2="1440" y2="81" stroke="#252936"/>
+    <filter id="shadow">
+        <feDropShadow dx="0" dy="15" stdDeviation="18"
+                      flood-color="#000000"
+                      flood-opacity=".5"/>
+    </filter>
 
-  <!-- Logo -->
-  <path d="M105 24 L125 17 L145 24 V43 C145 57 136 65 125 70 C114 65 105 57 105 43Z"
-        fill="none" stroke="#ff2638" stroke-width="2.5"/>
-  <path d="M117 30 L133 48 M133 30 L117 48"
-        stroke="#ff2638" stroke-width="3"/>
-  <text x="157" y="49" fill="#f5f5f7" font-family="Arial,sans-serif"
-        font-size="21" font-weight="700">SENTRY</text>
-  <text x="248" y="49" fill="#ff2638" font-family="Arial,sans-serif"
-        font-size="21" font-weight="700">X</text>
+    <clipPath id="heroClip">
+        <rect width="1440" height="1000"/>
+    </clipPath>
 
-  <!-- Navigation -->
-  <g font-family="Arial,sans-serif" font-size="14">
-    <text x="540" y="45" fill="#ffffff">Home</text>
-    <text x="620" y="45" fill="#a8adb9">Features</text>
-    <text x="710" y="45" fill="#a8adb9">Products</text>
-    <text x="805" y="45" fill="#a8adb9">Docs</text>
-    <text x="875" y="45" fill="#a8adb9">Community</text>
-  </g>
+    <style>
 
-  <rect x="540" y="62" width="38" height="2" rx="1" fill="#ff2638"/>
+        .nav {
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            fill: #9298a7;
+            cursor: pointer;
+        }
 
-  <rect x="1250" y="20" width="125" height="42" rx="7"
-        fill="none" stroke="#e92335"/>
-  <text x="1312" y="46" text-anchor="middle"
-        fill="#ff3a49" font-family="Arial,sans-serif"
-        font-size="14" font-weight="600">Get Started</text>
+        .nav:hover {
+            fill: white;
+        }
 
-  <!-- HERO -->
-  <text x="120" y="225"
-        fill="#f7f7f9"
-        font-family="Arial,sans-serif"
-        font-size="57"
-        font-weight="800">Powerful Tools.</text>
+        .heading {
+            font-family: Arial, sans-serif;
+            font-weight: 800;
+        }
 
-  <text x="120" y="292"
-        fill="#ff3445"
-        font-family="Arial,sans-serif"
-        font-size="57"
-        font-weight="800">Endless</text>
+        .body {
+            font-family: Arial, sans-serif;
+        }
 
-  <text x="395" y="292"
-        fill="#f7f7f9"
-        font-family="Arial,sans-serif"
-        font-size="57"
-        font-weight="800"> Possibilities.</text>
+        .card {
+            cursor: pointer;
+        }
 
-  <text x="122" y="340"
-        fill="#aeb4c0"
-        font-family="Arial,sans-serif"
-        font-size="17">
-    Sentry X provides high performance tools and resources
-  </text>
+        .card:hover .card-bg {
+            stroke: #ff3045;
+        }
 
-  <text x="122" y="366"
-        fill="#aeb4c0"
-        font-family="Arial,sans-serif"
-        font-size="17">
-    for developers, creators, and gamers.
-  </text>
+        .card:hover .card-glow {
+            opacity: .18;
+        }
 
-  <!-- CTA -->
-  <rect x="120" y="400" width="190" height="52" rx="8" fill="url(#red)"/>
-  <text x="215" y="432" text-anchor="middle"
-        fill="#ffffff" font-family="Arial,sans-serif"
-        font-size="15" font-weight="700">Explore Products</text>
-  <path d="M281 426 L290 433 L281 440" fill="none"
-        stroke="#fff" stroke-width="2"/>
+        .button {
+            cursor: pointer;
+        }
 
-  <rect x="330" y="400" width="190" height="52" rx="8"
-        fill="none" stroke="#e92a3b"/>
-  <text x="425" y="432" text-anchor="middle"
-        fill="#ffffff" font-family="Arial,sans-serif"
-        font-size="15" font-weight="600">Join Community</text>
+        .button:hover {
+            opacity: .82;
+        }
 
-  <!-- Feature mini cards -->
-  <g font-family="Arial,sans-serif">
-    <path d="M125 495 L125 530 Q125 540 135 540 H155"
-          fill="none" stroke="#ff2638" stroke-width="3"/>
-    <path d="M155 500 L145 490 L135 500"
-          fill="none" stroke="#ff2638" stroke-width="3"/>
+        .section {
+            transition: opacity .5s;
+        }
 
-    <text x="175" y="505" fill="#ffffff" font-size="14" font-weight="700">Secure</text>
-    <text x="175" y="526" fill="#949aa7" font-size="13">Built with security in mind</text>
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+                transform-origin: 1080px 320px;
+            }
+            to {
+                transform: rotate(360deg);
+                transform-origin: 1080px 320px;
+            }
+        }
 
-    <line x1="345" y1="490" x2="345" y2="545" stroke="#343845"/>
+        @keyframes rotateReverse {
+            from {
+                transform: rotate(360deg);
+                transform-origin: 1080px 320px;
+            }
+            to {
+                transform: rotate(0deg);
+                transform-origin: 1080px 320px;
+            }
+        }
 
-    <path d="M385 495 L372 520 H385 L377 542 L402 511 H389 L398 495Z"
-          fill="none" stroke="#ff2638" stroke-width="2.5"/>
+        @keyframes pulse {
+            0%,100% { opacity:.25; }
+            50% { opacity:1; }
+        }
 
-    <text x="415" y="505" fill="#ffffff" font-size="14" font-weight="700">Fast</text>
-    <text x="415" y="526" fill="#949aa7" font-size="13">Optimized performance</text>
+        @keyframes float {
+            0%,100% { transform:translateY(0); }
+            50% { transform:translateY(-10px); }
+        }
 
-    <line x1="580" y1="490" x2="580" y2="545" stroke="#343845"/>
+        .orbit1 {
+            animation: rotate 18s linear infinite;
+        }
 
-    <text x="620" y="505" fill="#ff2638" font-size="25" font-weight="700">&lt;/&gt;</text>
-    <text x="675" y="505" fill="#ffffff" font-size="14" font-weight="700">Developer First</text>
-    <text x="675" y="526" fill="#949aa7" font-size="13">Made for developers</text>
-  </g>
+        .orbit2 {
+            animation: rotateReverse 27s linear infinite;
+        }
 
-  <!-- HERO SHIELD -->
-  <g transform="translate(1040 270)" filter="url(#redGlow)">
-    <circle cx="0" cy="0" r="210" fill="none" stroke="#ff2538"
-            stroke-opacity=".08"/>
-    <circle cx="0" cy="0" r="165" fill="none" stroke="#ff2538"
-            stroke-opacity=".12"/>
-    <circle cx="0" cy="0" r="125" fill="none" stroke="#ff2538"
-            stroke-opacity=".15"/>
+        .orbit3 {
+            animation: rotate 11s linear infinite;
+        }
 
-    <ellipse cx="0" cy="0" rx="265" ry="92"
-             fill="none" stroke="#ff3445" stroke-width="2"
-             transform="rotate(15)"/>
+        .particle {
+            animation: pulse 2s ease-in-out infinite;
+        }
 
-    <ellipse cx="0" cy="0" rx="265" ry="92"
-             fill="none" stroke="#d7d9df" stroke-opacity=".35"
-             stroke-width="1.5" transform="rotate(-17)"/>
+        .shield {
+            animation: float 4s ease-in-out infinite;
+        }
 
-    <path d="M0 -125 L108 -88 V12 C108 83 66 126 0 157
-             C-66 126 -108 83 -108 12 V-88Z"
-          fill="#0a0c13" stroke="#ff2638" stroke-width="5"/>
+    </style>
 
-    <path d="M0 -103 L87 -73 V10 C87 64 55 100 0 126
-             C-55 100 -87 64 -87 10 V-73Z"
-          fill="none" stroke="#ff2638" stroke-width="2"/>
+</defs>
 
-    <path d="M-45 -47 L45 48 M45 -47 L-45 48"
-          stroke="#ff2638" stroke-width="19" stroke-linecap="square"/>
+<!-- BACKGROUND -->
 
-    <circle cx="128" cy="-95" r="5" fill="#ff2638"/>
-    <circle cx="-160" cy="50" r="4" fill="#ff2638"/>
-    <circle cx="185" cy="72" r="4" fill="#ff2638"/>
-  </g>
+<rect width="1440" height="1000" fill="url(#background)"/>
 
-  <!-- SECTION -->
-  <rect x="70" y="600" width="1300" height="280" rx="16"
-        fill="#10131c" stroke="#1b202c"/>
+<rect width="1440" height="1000" fill="url(#grid)"/>
 
-  <text x="720" y="650"
-        text-anchor="middle"
-        fill="#f4f5f7"
-        font-family="Arial,sans-serif"
-        font-size="27"
-        font-weight="700">
-    Everything you need to
-  </text>
+<ellipse cx="1080" cy="300"
+         rx="470"
+         ry="400"
+         fill="url(#heroGlow)"/>
 
-  <text x="944" y="650"
-        fill="#ff3345"
-        font-family="Arial,sans-serif"
-        font-size="27"
-        font-weight="700">
-    build.
-  </text>
+<!-- NAVBAR -->
 
-  <text x="1015" y="650"
-        fill="#f4f5f7"
-        font-family="Arial,sans-serif"
-        font-size="27"
-        font-weight="700">
-    create. win.
-  </text>
+<rect width="1440"
+      height="76"
+      fill="#070910"
+      fill-opacity=".88"/>
 
-  <rect x="700" y="669" width="40" height="2" fill="#ff2638"/>
+<line x1="0"
+      y1="75"
+      x2="1440"
+      y2="75"
+      stroke="#252a35"/>
 
-  <!-- CARDS -->
-  <g font-family="Arial,sans-serif">
-    <!-- Card 1 -->
-    <rect x="100" y="705" width="290" height="140" rx="10"
-          fill="url(#card)" stroke="#292e3b"/>
-    <rect x="225" y="725" width="40" height="30" rx="4"
-          fill="none" stroke="#ffffff" stroke-width="2"/>
-    <path d="M235 742 L243 749 L251 740 M255 740 L261 740"
-          fill="none" stroke="#ff2638" stroke-width="2"/>
-    <text x="245" y="780" text-anchor="middle"
-          fill="#ffffff" font-size="15" font-weight="700">
-      Lua Analysis Suite
+<!-- LOGO -->
+
+<g transform="translate(75 20)">
+
+    <path d="M0 5
+             L18 -2
+             L36 5
+             V22
+             C36 34 29 41 18 46
+             C7 41 0 34 0 22Z"
+          fill="none"
+          stroke="#ff2638"
+          stroke-width="2.5"/>
+
+    <path d="M11 12L25 29
+             M25 12L11 29"
+          stroke="#ff2638"
+          stroke-width="3"/>
+
+    <text x="49"
+          y="28"
+          class="heading"
+          font-size="21"
+          fill="#ffffff">
+        SENTRY
     </text>
-    <text x="245" y="802" text-anchor="middle"
-          fill="#9298a5" font-size="12">
-      Powerful analysis tools
+
+    <text x="140"
+          y="28"
+          class="heading"
+          font-size="21"
+          fill="#ff2638">
+        X
     </text>
-    <text x="245" y="820" text-anchor="middle"
-          fill="#ff3345" font-size="12">Learn more →</text>
 
-    <!-- Card 2 -->
-    <rect x="415" y="705" width="290" height="140" rx="10"
-          fill="url(#card)" stroke="#292e3b"/>
-    <path d="M550 728 L578 742 L550 756 L522 742Z"
-          fill="none" stroke="#ffffff" stroke-width="2"/>
-    <path d="M530 748 V760 Q550 773 570 760 V748"
-          fill="none" stroke="#ffffff" stroke-width="2"/>
-    <text x="560" y="780" text-anchor="middle"
-          fill="#ffffff" font-size="15" font-weight="700">
-      Lua Lessons
+</g>
+
+<!-- NAVIGATION -->
+
+<g id="navigation">
+
+    <g class="nav"
+       onclick="showSection('home')">
+        <text x="570" y="44">Home</text>
+    </g>
+
+    <g class="nav"
+       onclick="showSection('features')">
+        <text x="650" y="44">Features</text>
+    </g>
+
+    <g class="nav"
+       onclick="showSection('products')">
+        <text x="750" y="44">Products</text>
+    </g>
+
+    <g class="nav"
+       onclick="showSection('community')">
+        <text x="850" y="44">Community</text>
+    </g>
+
+</g>
+
+<!-- THEME BUTTON -->
+
+<g class="button"
+   onclick="toggleTheme()">
+
+    <rect x="1170"
+          y="19"
+          width="42"
+          height="38"
+          rx="8"
+          fill="#10131b"
+          stroke="#303541"/>
+
+    <text id="themeIcon"
+          x="1191"
+          y="44"
+          text-anchor="middle"
+          font-size="17"
+          fill="#ffffff">
+        ☾
     </text>
-    <text x="560" y="802" text-anchor="middle"
-          fill="#9298a5" font-size="12">
-      Learn Lua step-by-step
+
+</g>
+
+<!-- GET STARTED -->
+
+<g class="button"
+   onclick="showMessage('Welcome to Sentry X!')">
+
+    <rect x="1225"
+          y="18"
+          width="140"
+          height="40"
+          rx="8"
+          fill="none"
+          stroke="#ff2638"/>
+
+    <text x="1295"
+          y="43"
+          text-anchor="middle"
+          class="body"
+          font-size="14"
+          font-weight="600"
+          fill="#ff4050">
+        Get Started
     </text>
-    <text x="560" y="820" text-anchor="middle"
-          fill="#ff3345" font-size="12">Learn more →</text>
 
-    <!-- Card 3 -->
-    <rect x="730" y="705" width="290" height="140" rx="10"
-          fill="url(#card)" stroke="#292e3b"/>
-    <path d="M850 758 V725 M835 740 L850 725 L865 740"
-          fill="none" stroke="#ff3345" stroke-width="3"/>
-    <path d="M830 758 H870 Q878 758 878 750
-             Q878 740 868 739 Q865 727 852 727
-             Q839 727 836 740 Q826 740 826 750
-             Q826 758 830 758Z"
-          fill="none" stroke="#ffffff" stroke-width="2"/>
-    <text x="875" y="780" text-anchor="middle"
-          fill="#ffffff" font-size="15" font-weight="700">
-      Cloud Services
+</g>
+
+<!-- HERO -->
+
+<g id="home"
+   class="section">
+
+    <text x="100"
+          y="185"
+          class="body"
+          font-size="13"
+          font-weight="700"
+          letter-spacing="3"
+          fill="#ff3345">
+        THE DEVELOPER PLATFORM
     </text>
-    <text x="875" y="802" text-anchor="middle"
-          fill="#9298a5" font-size="12">
-      Fast and reliable hosting
+
+    <text x="100"
+          y="260"
+          class="heading"
+          font-size="65"
+          fill="#ffffff">
+        Powerful Tools.
     </text>
-    <text x="875" y="820" text-anchor="middle"
-          fill="#ff3345" font-size="12">Learn more →</text>
 
-    <!-- Card 4 -->
-    <rect x="1045" y="705" width="290" height="140" rx="10"
-          fill="url(#card)" stroke="#292e3b"/>
-    <circle cx="1190" cy="735" r="10"
-            fill="none" stroke="#ffffff" stroke-width="2"/>
-    <path d="M1170 765 Q1170 745 1190 745 Q1210 745 1210 765"
-          fill="none" stroke="#ffffff" stroke-width="2"/>
-    <circle cx="1168" cy="740" r="7"
-            fill="none" stroke="#ff3345" stroke-width="2"/>
-    <text x="1190" y="780" text-anchor="middle"
-          fill="#ffffff" font-size="15" font-weight="700">
-      Community
+    <text x="100"
+          y="330"
+          class="heading"
+          font-size="65"
+          fill="#ff3043">
+        Endless
     </text>
-    <text x="1190" y="802" text-anchor="middle"
-          fill="#9298a5" font-size="12">
-      Join creators and developers
+
+    <text x="390"
+          y="330"
+          class="heading"
+          font-size="65"
+          fill="#ffffff">
+        Possibilities.
     </text>
-    <text x="1190" y="820" text-anchor="middle"
-          fill="#ff3345" font-size="12">Join now →</text>
-  </g>
 
-  <!-- FOOTER -->
-  <line x1="0" y1="920" x2="1440" y2="920" stroke="#242833"/>
+    <text x="103"
+          y="375"
+          class="body"
+          font-size="17"
+          fill="#969daa">
+        High-performance tools and resources for developers,
+    </text>
 
-  <path d="M105 945 L125 938 L145 945 V963
-           C145 976 136 983 125 988
-           C114 983 105 976 105 963Z"
-        fill="none" stroke="#ff2638" stroke-width="2"/>
+    <text x="103"
+          y="402"
+          class="body"
+          font-size="17"
+          fill="#969daa">
+        creators, and gamers.
+    </text>
 
-  <path d="M118 950 L132 968 M132 950 L118 968"
-        stroke="#ff2638" stroke-width="2"/>
+    <!-- BUTTON -->
 
-  <text x="157" y="969"
-        fill="#f5f5f7"
-        font-family="Arial,sans-serif"
-        font-size="19"
-        font-weight="700">SENTRY</text>
+    <g class="button"
+       onclick="showSection('products')">
 
-  <text x="238" y="969"
-        fill="#ff2638"
-        font-family="Arial,sans-serif"
-        font-size="19"
-        font-weight="700">X</text>
+        <rect x="100"
+              y="440"
+              width="190"
+              height="53"
+              rx="8"
+              fill="url(#button)"
+              filter="url(#shadow)"/>
 
-  <text x="390" y="947" fill="#ffffff"
-        font-family="Arial,sans-serif"
-        font-size="12" font-weight="700">PRODUCTS</text>
-  <text x="390" y="969" fill="#8e94a1"
-        font-family="Arial,sans-serif" font-size="11">Lua Analysis Suite</text>
-  <text x="390" y="987" fill="#8e94a1"
-        font-family="Arial,sans-serif" font-size="11">Cloud Services</text>
+        <text x="195"
+              y="473"
+              text-anchor="middle"
+              class="body"
+              font-size="14"
+              font-weight="700"
+              fill="#ffffff">
+            Explore Products
+        </text>
 
-  <text x="620" y="947" fill="#ffffff"
-        font-family="Arial,sans-serif"
-        font-size="12" font-weight="700">RESOURCES</text>
-  <text x="620" y="969" fill="#8e94a1"
-        font-family="Arial,sans-serif" font-size="11">Documentation</text>
-  <text x="620" y="987" fill="#8e94a1"
-        font-family="Arial,sans-serif" font-size="11">API Reference</text>
+        <text x="268"
+              y="473"
+              class="body"
+              font-size="18"
+              fill="#ffffff">
+            →
+        </text>
 
-  <text x="850" y="947" fill="#ffffff"
-        font-family="Arial,sans-serif"
-        font-size="12" font-weight="700">COMPANY</text>
-  <text x="850" y="969" fill="#8e94a1"
-        font-family="Arial,sans-serif" font-size="11">About</text>
-  <text x="850" y="987" fill="#8e94a1"
-        font-family="Arial,sans-serif" font-size="11">Contact</text>
+    </g>
 
-  <text x="1080" y="947" fill="#ffffff"
-        font-family="Arial,sans-serif"
-        font-size="12" font-weight="700">STAY CONNECTED</text>
+    <!-- SECOND BUTTON -->
 
-  <rect x="1080" y="958" width="38" height="30" rx="5"
-        fill="none" stroke="#61202a"/>
-  <text x="1099" y="978" text-anchor="middle"
-        fill="#ff3345" font-size="13">●</text>
+    <g class="button"
+       onclick="showMessage('Community coming soon!')">
 
-  <rect x="1128" y="958" width="38" height="30" rx="5"
-        fill="none" stroke="#61202a"/>
-  <text x="1147" y="978" text-anchor="middle"
-        fill="#ff3345" font-size="13">◉</text>
+        <rect x="305"
+              y="440"
+              width="190"
+              height="53"
+              rx="8"
+              fill="#0d1018"
+              stroke="#383d49"/>
 
-  <rect x="1176" y="958" width="38" height="30" rx="5"
-        fill="none" stroke="#61202a"/>
-  <text x="1195" y="978" text-anchor="middle"
-        fill="#ff3345" font-size="13">▶</text>
+        <text x="400"
+              y="473"
+              text-anchor="middle"
+              class="body"
+              font-size="14"
+              font-weight="600"
+              fill="#ffffff">
+            Join Community
+        </text>
 
-  <text x="720" y="998"
-        text-anchor="middle"
-        fill="#707682"
-        font-family="Arial,sans-serif"
-        font-size="11">
-    © 2026 Sentry X. All rights reserved.
-  </text>
+    </g>
+
+</g>
+
+<!-- HERO SVG ILLUSTRATION -->
+
+<g clip-path="url(#heroClip)">
+
+    <circle cx="1080"
+            cy="320"
+            r="310"
+            fill="url(#redGlow)"
+            filter="url(#softGlow)"/>
+
+    <!-- ORBITS -->
+
+    <ellipse class="orbit1"
+             cx="1080"
+             cy="320"
+             rx="270"
+             ry="100"
+             fill="none"
+             stroke="#ff2638"
+             stroke-opacity=".45"
+             stroke-width="2"/>
+
+    <ellipse class="orbit2"
+             cx="1080"
+             cy="320"
+             rx="270"
+             ry="100"
+             fill="none"
+             stroke="#ffffff"
+             stroke-opacity=".22"
+             stroke-width="1.5"
+             transform="rotate(60 1080 320)"/>
+
+    <ellipse class="orbit3"
+             cx="1080"
+             cy="320"
+             rx="230"
+             ry="80"
+             fill="none"
+             stroke="#ff2638"
+             stroke-opacity=".25"
+             stroke-width="1"
+             transform="rotate(-45 1080 320)"/>
+
+    <!-- CIRCUITS -->
+
+    <g stroke="#ff2638"
+       stroke-opacity=".25"
+       fill="none">
+
+        <path d="M780 220H850L890 180H950"/>
+        <path d="M1210 205H1270L1310 165H1370"/>
+        <path d="M1220 410H1280L1320 450H1370"/>
+        <path d="M790 410H850L880 440H940"/>
+
+    </g>
+
+    <!-- PARTICLES -->
+
+    <circle class="particle"
+            cx="805"
+            cy="220"
+            r="5"
+            fill="#ff2638"/>
+
+    <circle class="particle"
+            cx="1320"
+            cy="165"
+            r="4"
+            fill="#ff2638"
+            style="animation-delay:.5s"/>
+
+    <circle class="particle"
+            cx="1290"
+            cy="430"
+            r="5"
+            fill="#ff2638"
+            style="animation-delay:1s"/>
+
+    <circle class="particle"
+            cx="860"
+            cy="430"
+            r="4"
+            fill="#ff2638"
+            style="animation-delay:1.5s"/>
+
+    <!-- SHIELD -->
+
+    <g class="shield">
+
+        <path d="M1080 145
+                 L1200 184
+                 V285
+                 C1200 370 1150 425 1080 458
+                 C1010 425 960 370 960 285
+                 V184Z"
+              fill="#080a11"
+              stroke="#ff2638"
+              stroke-width="5"
+              filter="url(#glow)"/>
+
+        <path d="M1080 165
+                 L1177 198
+                 V283
+                 C1177 350 1135 393 1080 420
+                 C1025 393 983 350 983 283
+                 V198Z"
+              fill="none"
+              stroke="#ff2638"
+              stroke-width="2"/>
+
+        <path d="M1035 235
+                 L1125 330
+                 M1125 235
+                 L1035 330"
+              stroke="#ff2638"
+              stroke-width="20"/>
+
+    </g>
+
+</g>
+
+<!-- FEATURE SECTION -->
+
+<g id="features"
+   class="section">
+
+    <rect x="75"
+          y="545"
+          width="1290"
+          height="190"
+          rx="15"
+          fill="#0d1018"
+          stroke="#202530"/>
+
+    <!-- FEATURE 1 -->
+
+    <g class="card"
+       onclick="showMessage('Sentry X is built with security in mind.')">
+
+        <rect class="card-bg"
+              x="105"
+              y="575"
+              width="370"
+              height="130"
+              rx="10"
+              fill="url(#card)"
+              stroke="#252a35"/>
+
+        <circle class="card-glow"
+                cx="160"
+                cy="620"
+                r="55"
+                fill="url(#redGlow)"
+                opacity="0"/>
+
+        <text x="135"
+              y="630"
+              font-size="32"
+              fill="#ff3045">
+            ◇
+        </text>
+
+        <text x="185"
+              y="612"
+              class="heading"
+              font-size="16"
+              fill="#ffffff">
+            Secure
+        </text>
+
+        <text x="185"
+              y="638"
+              class="body"
+              font-size="13"
+              fill="#818795">
+            Built with security
+        </text>
+
+        <text x="185"
+              y="658"
+              class="body"
+              font-size="13"
+              fill="#818795">
+            and reliability in mind.
+        </text>
+
+    </g>
+
+    <!-- FEATURE 2 -->
+
+    <g class="card"
+       onclick="showMessage('Performance is a priority.')">
+
+        <rect class="card-bg"
+              x="535"
+              y="575"
+              width="370"
+              height="130"
+              rx="10"
+              fill="url(#card)"
+              stroke="#252a35"/>
+
+        <text x="565"
+              y="635"
+              font-size="32"
+              fill="#ff3045">
+            ϟ
+        </text>
+
+        <text x="615"
+              y="612"
+              class="heading"
+              font-size="16"
+              fill="#ffffff">
+            Fast
+        </text>
+
+        <text x="615"
+              y="638"
+              class="body"
+              font-size="13"
+              fill="#818795">
+            Optimized for speed
+        </text>
+
+        <text x="615"
+              y="658"
+              class="body"
+              font-size="13"
+              fill="#818795">
+            and high performance.
+        </text>
+
+    </g>
+
+    <!-- FEATURE 3 -->
+
+    <g class="card"
+       onclick="showMessage('Tools designed by developers.')">
+
+        <rect class="card-bg"
+              x="965"
+              y="575"
+              width="370"
+              height="130"
+              rx="10"
+              fill="url(#card)"
+              stroke="#252a35"/>
+
+        <text x="995"
+              y="635"
+              class="heading"
+              font-size="24"
+              fill="#ff3045">
+            &lt;/&gt;
+        </text>
+
+        <text x="1060"
+              y="612"
+              class="heading"
+              font-size="16"
+              fill="#ffffff">
+            Developer First
+        </text>
+
+        <text x="1060"
+              y="638"
+              class="body"
+              font-size="13"
+              fill="#818795">
+            Made by developers,
+        </text>
+
+        <text x="1060"
+              y="658"
+              class="body"
+              font-size="13"
+              fill="#818795">
+            for developers.
+        </text>
+
+    </g>
+
+</g>
+
+<!-- PRODUCTS -->
+
+<g id="products"
+   class="section">
+
+    <text x="720"
+          y="790"
+          text-anchor="middle"
+          class="body"
+          font-size="12"
+          font-weight="700"
+          letter-spacing="3"
+          fill="#ff3045">
+        PRODUCTS
+    </text>
+
+    <text x="720"
+          y="830"
+          text-anchor="middle"
+          class="heading"
+          font-size="35"
+          fill="#ffffff">
+        Everything you need.
+    </text>
+
+    <!-- PRODUCT CARDS -->
+
+    <g class="card"
+       onclick="showMessage('Lua Analysis Suite selected.')">
+
+        <rect class="card-bg"
+              x="105"
+              y="855"
+              width="280"
+              height="125"
+              rx="12"
+              fill="url(#card)"
+              stroke="#252a35"/>
+
+        <text x="130"
+              y="895"
+              class="heading"
+              font-size="22"
+              fill="#ff3045">
+            &lt;/&gt;
+        </text>
+
+        <text x="130"
+              y="925"
+              class="heading"
+              font-size="15"
+              fill="#ffffff">
+            Lua Analysis Suite
+        </text>
+
+        <text x="130"
+              y="950"
+              class="body"
+              font-size="12"
+              fill="#777e8b">
+            Analyze and debug Lua code.
+        </text>
+
+    </g>
+
+    <g class="card"
+       onclick="showMessage('Lua Lessons selected.')">
+
+        <rect class="card-bg"
+              x="410"
+              y="855"
+              width="280"
+              height="125"
+              rx="12"
+              fill="url(#card)"
+              stroke="#252a35"/>
+
+        <text x="435"
+              y="895"
+              font-size="25"
+              fill="#ff3045">
+            ◇
+        </text>
+
+        <text x="435"
+              y="925"
+              class="heading"
+              font-size="15"
+              fill="#ffffff">
+            Lua Lessons
+        </text>
+
+        <text x="435"
+              y="950"
+              class="body"
+              font-size="12"
+              fill="#777e8b">
+            Learn Lua step by step.
+        </text>
+
+    </g>
+
+    <g class="card"
+       onclick="showMessage('Cloud Services selected.')">
+
+        <rect class="card-bg"
+              x="715"
+              y="855"
+              width="280"
+              height="125"
+              rx="12"
+              fill="url(#card)"
+              stroke="#252a35"/>
+
+        <text x="740"
+              y="895"
+              font-size="27"
+              fill="#ff3045">
+            ↑
+        </text>
+
+        <text x="740"
+              y="925"
+              class="heading"
+              font-size="15"
+              fill="#ffffff">
+            Cloud Services
+        </text>
+
+        <text x="740"
+              y="950"
+              class="body"
+              font-size="12"
+              fill="#777e8b">
+            Fast and reliable infrastructure.
+        </text>
+
+    </g>
+
+    <g class="card"
+       onclick="showMessage('Welcome to the community!')">
+
+        <rect class="card-bg"
+              x="1020"
+              y="855"
+              width="280"
+              height="125"
+              rx="12"
+              fill="url(#card)"
+              stroke="#252a35"/>
+
+        <text x="1045"
+              y="895"
+              font-size="27"
+              fill="#ff3045">
+            ◎
+        </text>
+
+        <text x="1045"
+              y="925"
+              class="heading"
+              font-size="15"
+              fill="#ffffff">
+            Community
+        </text>
+
+        <text x="1045"
+              y="950"
+              class="body"
+              font-size="12"
+              fill="#777e8b">
+            Connect with other creators.
+        </text>
+
+    </g>
+
+</g>
+
+<!-- POPUP -->
+
+<g id="popup"
+   opacity="0"
+   pointer-events="none">
+
+    <rect x="420"
+          y="430"
+          width="600"
+          height="140"
+          rx="15"
+          fill="#121620"
+          stroke="#ff3045"
+          filter="url(#shadow)"/>
+
+    <text id="popupText"
+          x="720"
+          y="495"
+          text-anchor="middle"
+          class="heading"
+          font-size="20"
+          fill="#ffffff">
+    </text>
+
+    <g class="button"
+       onclick="hideMessage()">
+
+        <rect x="655"
+              y="520"
+              width="130"
+              height="32"
+              rx="6"
+              fill="#ff3045"/>
+
+        <text x="720"
+              y="542"
+              text-anchor="middle"
+              class="body"
+              font-size="12"
+              font-weight="700"
+              fill="#ffffff">
+            CLOSE
+        </text>
+
+    </g>
+
+</g>
+
+<!-- SVG JAVASCRIPT -->
+
+<script type="text/ecmascript"><![CDATA[
+
+    var light = false;
+
+    function showMessage(message) {
+        var popup = document.getElementById("popup");
+        var text = document.getElementById("popupText");
+
+        text.textContent = message;
+
+        popup.setAttribute("opacity", "1");
+        popup.setAttribute("pointer-events", "all");
+    }
+
+    function hideMessage() {
+        var popup = document.getElementById("popup");
+
+        popup.setAttribute("opacity", "0");
+        popup.setAttribute("pointer-events", "none");
+    }
+
+    function toggleTheme() {
+
+        light = !light;
+
+        var bg = document.querySelector("svg > rect");
+
+        var icon = document.getElementById("themeIcon");
+
+        if (light) {
+
+            bg.setAttribute("fill", "#f3f4f7");
+
+            icon.textContent = "☀";
+
+        } else {
+
+            bg.setAttribute("fill", "url(#background)");
+
+            icon.textContent = "☾";
+
+        }
+    }
+
+    function showSection(name) {
+
+        if (name === "products") {
+            document.getElementById("products")
+                .scrollIntoView({behavior:"smooth"});
+        }
+
+        if (name === "features") {
+            document.getElementById("features")
+                .scrollIntoView({behavior:"smooth"});
+        }
+
+        if (name === "home") {
+            document.getElementById("home")
+                .scrollIntoView({behavior:"smooth"});
+        }
+
+        if (name === "community") {
+            document.getElementById("products")
+                .scrollIntoView({behavior:"smooth"});
+        }
+    }
+
+    window.addEventListener("mousemove", function(e) {
+
+        var svg = document.documentElement;
+
+        var rect = svg.getBoundingClientRect();
+
+        var x = (e.clientX - rect.left) / rect.width;
+        var y = (e.clientY - rect.top) / rect.height;
+
+        var shield = document.querySelector(".shield");
+
+        if (shield) {
+
+            shield.style.transform =
+                "translate(" +
+                ((x - .5) * 12) +
+                "px," +
+                ((y - .5) * 12) +
+                "px)";
+
+        }
+
+    });
+
+]]></script>
+
 </svg>
