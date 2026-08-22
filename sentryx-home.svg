@@ -1,488 +1,369 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg"
-     xmlns:xlink="http://www.w3.org/1999/xlink"
-     width="100vw"
-     height="100vh"
-     viewBox="0 0 1000 700">
-  <title>Sentry X | Home</title>
-  <style><![CDATA[
-
-    * {
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana;
-    }
-
-    body {
-      margin: 0;
-      padding: 20px;
-      background-color: #121212;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-      color: white;
-    }
-
-    .top-panel {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #1d1d1d;
-    width: 100vw; /* full viewport width */
-    max-width: 100vw; /* remove previous max-width */
-    padding: 0 20px; /* optional spacing from edges */
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000
-}
-
-
-
-.cards-wrapper {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-      margin-top: 10px;
-    }
-
-    .card {
-      position: relative;
-      width: 350px;
-      aspect-ratio: 1 / 1;
-      border-radius: 15px;
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
-    }
-
-    .card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
-    }
-
-    .card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-.top-panel img {
-    height: 60px;
-    width: 60px;
-    border-radius: 0%;
-    object-fit: cover;
-}
-
-
-    @keyframes glowPulse {
-      0%, 100% { box-shadow: 0 0 10px rgba(40, 176, 255, 0.8), 0 0 8px rgba(151, 40, 255, 0.6); }
-      50% { box-shadow: 0 0 12px rgb(40, 140, 255), 0 0 15px rgba(151, 40, 255, 0.9); }
-    }
-    
-
-    .special-button {
-      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: transparent;
-      color: white;
-      width: 135px;
-      height: 35px;
-      text-align: center;
-      justify-content: center;
-      align-items: center;
-      transition: all 0.25s ease;
-      display: flex;
-      border: 1px solid white;
-    }
-
-    .special-button:hover {
-      background-color: white;
-      color: black;
-    }
-
-    .page-title {
-color: whitesmoke;      padding: 10px;
-      
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      font-size: 50px;
-    }
-
-    .page-subtitle {
-color: whitesmoke;      padding: 10px;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      font-size: 30px;
-      text-align: center;
-    }
-
-    .page-desc {
-      color: whitesmoke;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      font-size: 25px;
-      animation: fadeIn 2.5s ease backwards;
-      word-wrap: break-word;
-      width: 500px;
-      text-align: center;
-      display: flex;
-      justify-items: center;
-
-    }
-
-    @keyframes fadeIn {
-      from {                       /* starting point */
-    opacity: 0;
-    transform: translateY(20px);
-  }
-      to {
-        opacity: 1;
-        transform: translateY(0)
-      }
-    }
-
-    body {
-    padding-top: 90px; /* more space from fixed top-panel */
-    font-family: sans-serif;
-    background-color: #111;
-}
-
-.game-section {
-    background-color: #1a1a1a;
-    margin: 30px auto;
-    border-radius: 15px;
-    max-width: 600px;
-    aspect-ratio: 1 / 1; /* keeps it square */
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-}
-
-.game-section h2 {
-    color: white;
-    text-align: left;
-    margin-bottom: 15px;
-}
-
-.cards-wrapper {
-    display: flex;
-    flex-wrap: wrap;        /* allow wrapping */
-    justify-content: center; /* center cards */
-    gap: 20px;
-}
-.card {
-    background-color: #222;
-    color: white;
-    width: 150px;   /* slightly bigger */
-    height: 150px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
-}
-
-    .card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .title {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(0, 0, 0, 0.7);
-      color: white;
-      padding: 10px;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .card:hover .title {
-      opacity: 1;
-    }
-
-    .circle {
-  position: absolute;
-  background: white;
-  border-radius: 50%;
-  opacity: 0.1;
-  animation-name: moveDiagonal;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
-
-.sections-row {
-    display: flex;
-    justify-content: center; /* center the row */
-    gap: 30px;               /* space between sections */
-    flex-wrap: wrap;         /* wrap to next row if screen is too small */
-}
-
-.game-sectiontitle {
-    color: white;
-    text-align: left;      /* ensure alignment to left */
-    font-weight: bold;     /* make text bold */
-    font-size: 26px;       /* slightly bigger text */
-    margin-bottom: 15px;
-    justify-content: left;
-    display: block;
-}
-
-
-.background-circles {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: -1;
-  overflow: hidden;
-}
-
-@keyframes moveDiagonal {
-  0% { transform: translate(0, 0); opacity: 0.1; }
-  100% { transform: translate(100vw, 100vh); opacity: 0; }
-}
-
-    #notificationOverlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.5);
-      backdrop-filter: blur(6px);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 999;
-      display: none;
-    }
-
-    #notificationBox {
-      background-color: #1a1a1a;
-      border-radius: 15px;
-      width: 650px;
-      max-width: 90%;
-      height: 450px;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      box-shadow: 0 0 20px rgba(0,0,0,0.6);
-    }
-
-    #notificationTitle {
-      background-color: #2a2a2a;
-      padding: 15px;
-      font-size: 18px;
-      color: white;
-      font-weight: bold;
-      border-top-left-radius: 15px;
-      border-top-right-radius: 15px;
-      text-align: center;
-    }
-
-    #notificationContent {
-      padding: 15px;
-      overflow-y: auto;
-      color: #ddd;
-      flex: 1 1 auto;
-    }
-
-    .custom-button {
-    display: inline-block;
-    background-color: #2c2c2c;
-    color: #dfdfdf;
-    border-radius: 15px;
-    padding: 10px 20px;
-    font-size: 16px;
-    font-family: monospace;
-    text-align: center;
-    cursor: pointer;
-    box-shadow: 0 0px #2e3c69;
-    user-select: none;
-    transition: all 0.1s ease-in-out;
-}
-
-.custom-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 2px #2e3c69;
-}
-
-.custom-button:active {
-    transform: translateY(2px);
-    box-shadow: 0 3px #2e3c69;
-}
-
-    #notificationConfirm {
-      background-color: #2b52ff;
-      border: none;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 10px;
-      font-size: 16px;
-      cursor: pointer;
-      width: 300px;
-      margin: 10px auto;
-      box-shadow: 0 0 15px rgba(40,90,255,0.8), 0 0 25px rgba(40,133,255,0.6);
-      transition: transform 0.3s ease, background-color 0.3s ease;
-    }
-
-    #notificationConfirm:hover {
-      transform: scale(0.97);
-    }
-
-    @media (max-width: 600px) {
-      .card {
-        width: 45vw;
-      }
-
-      .search-container {
-        flex-direction: column;
-      }
-
-      .search-container button {
-        width: 100%;
-      }
-    }
-  
-  ]]></style>
-  <foreignObject x="0" y="0" width="100%" height="100%">
-    <div xmlns="http://www.w3.org/1999/xhtml" style="min-height:100vh;">
-
-<div class="top-panel">
-<img alt="Sentry X Logo" src="https://mmsgames.vercel.app/Logo125.png"/>
-<div class="right-side">
-<div class="custom-button" onclick="window.location.href='/sentryx/home.html'">Home</div>
-<div class="custom-button" onclick="window.location.href='/sentryx/games.html'">Games</div>
-<div class="custom-button" onclick="window.location.href='/sentryx/apps.html'">Apps</div>
-<div class="custom-button" onclick="window.location.href='https://discord.gg/TKvhCRkajT'">Discord</div>
-<div class="custom-button" onclick="window.location.href='https://docs.google.com/document/d/1oW54dmtFARwzJp9Uu3OymB3GWxLT7_kjolLLpT-CXEM/edit?usp=sharing'">TOS</div>
-</div>
-</div>
-<div class="page-title">Sentry X | Best website for Madison County School Systems.</div>
-<div class="page-subtitle">Hey there, my name is Noah. I'm the person who started the "trend" of making game websites for MMS. I'm happy that you found this website and paid for a license, as it will certainly support this project!</div>
-<div class="page-subtitle">Anyway, I'm pushing this document back to a new Vercel server. That way, if my site gets blocked, I can re-host it on a new Vercel server, and just rename the server.</div>
-<div class="page-subtitle">Happy gaming, and don't forget to say hello to me in the hallways if you ever see me!</div>
-<div class="background-circles"></div>
-
-  <div id="notificationOverlay">
-  <div id="notificationBox">
-    <div id="notificationTitle">Sentry X ToS, Guidelines, tutorials, etc..</div>
-    <div id="notificationContent">
-      <p>   Hello, this is the owner of the website (Noah). I really appreciate the support on this website. I will be rolling out new updates weekly (every weekend). Also, please agree to the Terms of Service (TOS), which is listed on the website. You can send me an Email (nhogue7753@madison.k12.al.us) if you have any issues or ideas about this website. Anyway, have fun on this website!</p>
-      <p>
-            If you have not read the rules already, please do so. It's highly recommended, and we do not encourage you to use this website without going through the ToS (Terms of Service) first. We would like to also point out that this website is for EDUCATIONAL PURPOSES ONLY. This website should only be used at appropriate times only. Refusing to follow the ToS (Terms of Service), or any rules listed in this notification, will get you blacklisted (Email blocked from this website).
-      </p>
-
-      <p>
-                    As stated earlier, my name is Noah. This is really just a side project of mine that I am creating for fun, it's not anything that I am going to try and make viral. But if it does, then cool. I might make this website open source if it does go viral. But I'm a student at MMS, and I'm just a student who loves coding. I like to code, play video games, and play soccer in my free-time. I decided that I wanted to make this website for fun because a BUNCH of websites, like Coolmath, Gamechy, and heck, even Red's Exploits Corner got blocked. If you don't know what Cool Math Games is, then you've been living under a rock; simple.
-      </p>
-
-       <p>
-        I'm writing all of this stuff on 8/17/25, the sunday before school starts again. I'm writing this because I'm bored. This notification system is really just going to be for listing updates, but since I really just started roling out updates, well, I'm not really going to do that stuff right now. Anyway, if you are wanting any more games to be added, then just DM me on Discord or send me an Email; my Email is listed above.
-      </p>
-
-      <p>
-        This website will be updated the Friday, Saturday, or Sunday after Linewize blocks the website. I'm not just going to abondan this website after Linewize blocks it. I hope that we can watch this community grow larger and larger everyday, and I hope that you can be apart of the community. Anyway, have a nice day!
-      </p>
-
-      <p>
-        COPYRIGHT Sentry X 2025: All Rights Reserved.
-      </p>
-
-    </div>
-    <button id="notificationConfirm">Confirm</button>
-  </div>
-</div>
-
-
-
-
-
-
-    </div>
-  </foreignObject>
-  <script type="application/javascript"><![CDATA[
-
-    document.querySelectorAll(".card").forEach(card => {
-  card.addEventListener("click", () => {
-    const gameFile = card.getAttribute("data-game");
-    if (gameFile) {
-      window.location.href = gameFile;
-    }
-  });
-});
-
-    function filterCards() {
-      const cards = document.querySelectorAll(".card");
-      cards.forEach(card => {
-        const title = card.querySelector(".title").textContent.toLowerCase();
-        card.style.display = title.includes(search) ? "block" : "none";
-      });
-    }
-
-  
-  ]]></script>
-  <script type="application/javascript"><![CDATA[
-
-window.addEventListener('load', () => {
-  const overlay = document.getElementById('notificationOverlay');
-  const confirmBtn = document.getElementById('notificationConfirm');
-
-  // Show notification on first visit
-  overlay.style.display = 'flex';
-
-  confirmBtn.addEventListener('click', () => {
-    overlay.style.display = 'none';
-  });
-});
-
-  ]]></script>
-  <script type="application/javascript"><![CDATA[
-
-  const tosButton = document.querySelector('.tosbtn');
-
-  tosButton.addEventListener('click', () => {
-    window.location.href = 'https://docs.google.com/document/d/1oW54dmtFARwzJp9Uu3OymB3GWxLT7_kjolLLpT-CXEM/edit?usp=sharing'; // <-- put your ToS link here
-  });
-
-  ]]></script>
-  <script type="application/javascript"><![CDATA[
-
-  const container = document.querySelector('.background-circles');
-
-  for (let i = 0; i < 125; i++) {
-    const circle = document.createElement('div');
-    circle.className = 'circle';
-
-    // Random starting position (within the viewport)
-    const top = Math.random() * 100;
-    const left = Math.random() * 100;
-
-    // Random size between 10px–25px
-    const size = 10 + Math.random() * 15;
-
-    // Random animation delay & duration
-    const delay = -Math.random() * 20; // negative to stagger the start
-    const duration = 10 + Math.random() * 10;
-
-    // Apply inline style
-    circle.style.top = `${top}%`;
-    circle.style.left = `${left}%`;
-    circle.style.width = `${size}px`;
-    circle.style.height = `${size}px`;
-    circle.style.animationDelay = `${delay}s`;
-    circle.style.animationDuration = `${duration}s`;
-
-    container.appendChild(circle);
-  }
-
-  ]]></script>
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1000" viewBox="0 0 1440 1000">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#070910"/>
+      <stop offset="0.5" stop-color="#0b0e17"/>
+      <stop offset="1" stop-color="#06070c"/>
+    </linearGradient>
+
+    <linearGradient id="red" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff454f"/>
+      <stop offset="1" stop-color="#e50920"/>
+    </linearGradient>
+
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#151923"/>
+      <stop offset="1" stop-color="#0e1119"/>
+    </linearGradient>
+
+    <radialGradient id="glow">
+      <stop offset="0" stop-color="#ff1f35" stop-opacity=".28"/>
+      <stop offset="1" stop-color="#ff1f35" stop-opacity="0"/>
+    </radialGradient>
+
+    <filter id="shadow">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+
+    <filter id="redGlow">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M50 0H0V50" fill="none" stroke="#ffffff" stroke-opacity=".025"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1440" height="1000" fill="url(#bg)"/>
+  <rect width="1440" height="1000" fill="url(#grid)"/>
+
+  <!-- Ambient glow -->
+  <ellipse cx="1100" cy="300" rx="400" ry="350" fill="url(#glow)"/>
+  <ellipse cx="350" cy="700" rx="350" ry="250" fill="url(#glow)" opacity=".18"/>
+
+  <!-- NAVBAR -->
+  <rect x="0" y="0" width="1440" height="82" fill="#080a11" fill-opacity=".9"/>
+  <line x1="0" y1="81" x2="1440" y2="81" stroke="#252936"/>
+
+  <!-- Logo -->
+  <path d="M105 24 L125 17 L145 24 V43 C145 57 136 65 125 70 C114 65 105 57 105 43Z"
+        fill="none" stroke="#ff2638" stroke-width="2.5"/>
+  <path d="M117 30 L133 48 M133 30 L117 48"
+        stroke="#ff2638" stroke-width="3"/>
+  <text x="157" y="49" fill="#f5f5f7" font-family="Arial,sans-serif"
+        font-size="21" font-weight="700">SENTRY</text>
+  <text x="248" y="49" fill="#ff2638" font-family="Arial,sans-serif"
+        font-size="21" font-weight="700">X</text>
+
+  <!-- Navigation -->
+  <g font-family="Arial,sans-serif" font-size="14">
+    <text x="540" y="45" fill="#ffffff">Home</text>
+    <text x="620" y="45" fill="#a8adb9">Features</text>
+    <text x="710" y="45" fill="#a8adb9">Products</text>
+    <text x="805" y="45" fill="#a8adb9">Docs</text>
+    <text x="875" y="45" fill="#a8adb9">Community</text>
+  </g>
+
+  <rect x="540" y="62" width="38" height="2" rx="1" fill="#ff2638"/>
+
+  <rect x="1250" y="20" width="125" height="42" rx="7"
+        fill="none" stroke="#e92335"/>
+  <text x="1312" y="46" text-anchor="middle"
+        fill="#ff3a49" font-family="Arial,sans-serif"
+        font-size="14" font-weight="600">Get Started</text>
+
+  <!-- HERO -->
+  <text x="120" y="225"
+        fill="#f7f7f9"
+        font-family="Arial,sans-serif"
+        font-size="57"
+        font-weight="800">Powerful Tools.</text>
+
+  <text x="120" y="292"
+        fill="#ff3445"
+        font-family="Arial,sans-serif"
+        font-size="57"
+        font-weight="800">Endless</text>
+
+  <text x="395" y="292"
+        fill="#f7f7f9"
+        font-family="Arial,sans-serif"
+        font-size="57"
+        font-weight="800"> Possibilities.</text>
+
+  <text x="122" y="340"
+        fill="#aeb4c0"
+        font-family="Arial,sans-serif"
+        font-size="17">
+    Sentry X provides high performance tools and resources
+  </text>
+
+  <text x="122" y="366"
+        fill="#aeb4c0"
+        font-family="Arial,sans-serif"
+        font-size="17">
+    for developers, creators, and gamers.
+  </text>
+
+  <!-- CTA -->
+  <rect x="120" y="400" width="190" height="52" rx="8" fill="url(#red)"/>
+  <text x="215" y="432" text-anchor="middle"
+        fill="#ffffff" font-family="Arial,sans-serif"
+        font-size="15" font-weight="700">Explore Products</text>
+  <path d="M281 426 L290 433 L281 440" fill="none"
+        stroke="#fff" stroke-width="2"/>
+
+  <rect x="330" y="400" width="190" height="52" rx="8"
+        fill="none" stroke="#e92a3b"/>
+  <text x="425" y="432" text-anchor="middle"
+        fill="#ffffff" font-family="Arial,sans-serif"
+        font-size="15" font-weight="600">Join Community</text>
+
+  <!-- Feature mini cards -->
+  <g font-family="Arial,sans-serif">
+    <path d="M125 495 L125 530 Q125 540 135 540 H155"
+          fill="none" stroke="#ff2638" stroke-width="3"/>
+    <path d="M155 500 L145 490 L135 500"
+          fill="none" stroke="#ff2638" stroke-width="3"/>
+
+    <text x="175" y="505" fill="#ffffff" font-size="14" font-weight="700">Secure</text>
+    <text x="175" y="526" fill="#949aa7" font-size="13">Built with security in mind</text>
+
+    <line x1="345" y1="490" x2="345" y2="545" stroke="#343845"/>
+
+    <path d="M385 495 L372 520 H385 L377 542 L402 511 H389 L398 495Z"
+          fill="none" stroke="#ff2638" stroke-width="2.5"/>
+
+    <text x="415" y="505" fill="#ffffff" font-size="14" font-weight="700">Fast</text>
+    <text x="415" y="526" fill="#949aa7" font-size="13">Optimized performance</text>
+
+    <line x1="580" y1="490" x2="580" y2="545" stroke="#343845"/>
+
+    <text x="620" y="505" fill="#ff2638" font-size="25" font-weight="700">&lt;/&gt;</text>
+    <text x="675" y="505" fill="#ffffff" font-size="14" font-weight="700">Developer First</text>
+    <text x="675" y="526" fill="#949aa7" font-size="13">Made for developers</text>
+  </g>
+
+  <!-- HERO SHIELD -->
+  <g transform="translate(1040 270)" filter="url(#redGlow)">
+    <circle cx="0" cy="0" r="210" fill="none" stroke="#ff2538"
+            stroke-opacity=".08"/>
+    <circle cx="0" cy="0" r="165" fill="none" stroke="#ff2538"
+            stroke-opacity=".12"/>
+    <circle cx="0" cy="0" r="125" fill="none" stroke="#ff2538"
+            stroke-opacity=".15"/>
+
+    <ellipse cx="0" cy="0" rx="265" ry="92"
+             fill="none" stroke="#ff3445" stroke-width="2"
+             transform="rotate(15)"/>
+
+    <ellipse cx="0" cy="0" rx="265" ry="92"
+             fill="none" stroke="#d7d9df" stroke-opacity=".35"
+             stroke-width="1.5" transform="rotate(-17)"/>
+
+    <path d="M0 -125 L108 -88 V12 C108 83 66 126 0 157
+             C-66 126 -108 83 -108 12 V-88Z"
+          fill="#0a0c13" stroke="#ff2638" stroke-width="5"/>
+
+    <path d="M0 -103 L87 -73 V10 C87 64 55 100 0 126
+             C-55 100 -87 64 -87 10 V-73Z"
+          fill="none" stroke="#ff2638" stroke-width="2"/>
+
+    <path d="M-45 -47 L45 48 M45 -47 L-45 48"
+          stroke="#ff2638" stroke-width="19" stroke-linecap="square"/>
+
+    <circle cx="128" cy="-95" r="5" fill="#ff2638"/>
+    <circle cx="-160" cy="50" r="4" fill="#ff2638"/>
+    <circle cx="185" cy="72" r="4" fill="#ff2638"/>
+  </g>
+
+  <!-- SECTION -->
+  <rect x="70" y="600" width="1300" height="280" rx="16"
+        fill="#10131c" stroke="#1b202c"/>
+
+  <text x="720" y="650"
+        text-anchor="middle"
+        fill="#f4f5f7"
+        font-family="Arial,sans-serif"
+        font-size="27"
+        font-weight="700">
+    Everything you need to
+  </text>
+
+  <text x="944" y="650"
+        fill="#ff3345"
+        font-family="Arial,sans-serif"
+        font-size="27"
+        font-weight="700">
+    build.
+  </text>
+
+  <text x="1015" y="650"
+        fill="#f4f5f7"
+        font-family="Arial,sans-serif"
+        font-size="27"
+        font-weight="700">
+    create. win.
+  </text>
+
+  <rect x="700" y="669" width="40" height="2" fill="#ff2638"/>
+
+  <!-- CARDS -->
+  <g font-family="Arial,sans-serif">
+    <!-- Card 1 -->
+    <rect x="100" y="705" width="290" height="140" rx="10"
+          fill="url(#card)" stroke="#292e3b"/>
+    <rect x="225" y="725" width="40" height="30" rx="4"
+          fill="none" stroke="#ffffff" stroke-width="2"/>
+    <path d="M235 742 L243 749 L251 740 M255 740 L261 740"
+          fill="none" stroke="#ff2638" stroke-width="2"/>
+    <text x="245" y="780" text-anchor="middle"
+          fill="#ffffff" font-size="15" font-weight="700">
+      Lua Analysis Suite
+    </text>
+    <text x="245" y="802" text-anchor="middle"
+          fill="#9298a5" font-size="12">
+      Powerful analysis tools
+    </text>
+    <text x="245" y="820" text-anchor="middle"
+          fill="#ff3345" font-size="12">Learn more →</text>
+
+    <!-- Card 2 -->
+    <rect x="415" y="705" width="290" height="140" rx="10"
+          fill="url(#card)" stroke="#292e3b"/>
+    <path d="M550 728 L578 742 L550 756 L522 742Z"
+          fill="none" stroke="#ffffff" stroke-width="2"/>
+    <path d="M530 748 V760 Q550 773 570 760 V748"
+          fill="none" stroke="#ffffff" stroke-width="2"/>
+    <text x="560" y="780" text-anchor="middle"
+          fill="#ffffff" font-size="15" font-weight="700">
+      Lua Lessons
+    </text>
+    <text x="560" y="802" text-anchor="middle"
+          fill="#9298a5" font-size="12">
+      Learn Lua step-by-step
+    </text>
+    <text x="560" y="820" text-anchor="middle"
+          fill="#ff3345" font-size="12">Learn more →</text>
+
+    <!-- Card 3 -->
+    <rect x="730" y="705" width="290" height="140" rx="10"
+          fill="url(#card)" stroke="#292e3b"/>
+    <path d="M850 758 V725 M835 740 L850 725 L865 740"
+          fill="none" stroke="#ff3345" stroke-width="3"/>
+    <path d="M830 758 H870 Q878 758 878 750
+             Q878 740 868 739 Q865 727 852 727
+             Q839 727 836 740 Q826 740 826 750
+             Q826 758 830 758Z"
+          fill="none" stroke="#ffffff" stroke-width="2"/>
+    <text x="875" y="780" text-anchor="middle"
+          fill="#ffffff" font-size="15" font-weight="700">
+      Cloud Services
+    </text>
+    <text x="875" y="802" text-anchor="middle"
+          fill="#9298a5" font-size="12">
+      Fast and reliable hosting
+    </text>
+    <text x="875" y="820" text-anchor="middle"
+          fill="#ff3345" font-size="12">Learn more →</text>
+
+    <!-- Card 4 -->
+    <rect x="1045" y="705" width="290" height="140" rx="10"
+          fill="url(#card)" stroke="#292e3b"/>
+    <circle cx="1190" cy="735" r="10"
+            fill="none" stroke="#ffffff" stroke-width="2"/>
+    <path d="M1170 765 Q1170 745 1190 745 Q1210 745 1210 765"
+          fill="none" stroke="#ffffff" stroke-width="2"/>
+    <circle cx="1168" cy="740" r="7"
+            fill="none" stroke="#ff3345" stroke-width="2"/>
+    <text x="1190" y="780" text-anchor="middle"
+          fill="#ffffff" font-size="15" font-weight="700">
+      Community
+    </text>
+    <text x="1190" y="802" text-anchor="middle"
+          fill="#9298a5" font-size="12">
+      Join creators and developers
+    </text>
+    <text x="1190" y="820" text-anchor="middle"
+          fill="#ff3345" font-size="12">Join now →</text>
+  </g>
+
+  <!-- FOOTER -->
+  <line x1="0" y1="920" x2="1440" y2="920" stroke="#242833"/>
+
+  <path d="M105 945 L125 938 L145 945 V963
+           C145 976 136 983 125 988
+           C114 983 105 976 105 963Z"
+        fill="none" stroke="#ff2638" stroke-width="2"/>
+
+  <path d="M118 950 L132 968 M132 950 L118 968"
+        stroke="#ff2638" stroke-width="2"/>
+
+  <text x="157" y="969"
+        fill="#f5f5f7"
+        font-family="Arial,sans-serif"
+        font-size="19"
+        font-weight="700">SENTRY</text>
+
+  <text x="238" y="969"
+        fill="#ff2638"
+        font-family="Arial,sans-serif"
+        font-size="19"
+        font-weight="700">X</text>
+
+  <text x="390" y="947" fill="#ffffff"
+        font-family="Arial,sans-serif"
+        font-size="12" font-weight="700">PRODUCTS</text>
+  <text x="390" y="969" fill="#8e94a1"
+        font-family="Arial,sans-serif" font-size="11">Lua Analysis Suite</text>
+  <text x="390" y="987" fill="#8e94a1"
+        font-family="Arial,sans-serif" font-size="11">Cloud Services</text>
+
+  <text x="620" y="947" fill="#ffffff"
+        font-family="Arial,sans-serif"
+        font-size="12" font-weight="700">RESOURCES</text>
+  <text x="620" y="969" fill="#8e94a1"
+        font-family="Arial,sans-serif" font-size="11">Documentation</text>
+  <text x="620" y="987" fill="#8e94a1"
+        font-family="Arial,sans-serif" font-size="11">API Reference</text>
+
+  <text x="850" y="947" fill="#ffffff"
+        font-family="Arial,sans-serif"
+        font-size="12" font-weight="700">COMPANY</text>
+  <text x="850" y="969" fill="#8e94a1"
+        font-family="Arial,sans-serif" font-size="11">About</text>
+  <text x="850" y="987" fill="#8e94a1"
+        font-family="Arial,sans-serif" font-size="11">Contact</text>
+
+  <text x="1080" y="947" fill="#ffffff"
+        font-family="Arial,sans-serif"
+        font-size="12" font-weight="700">STAY CONNECTED</text>
+
+  <rect x="1080" y="958" width="38" height="30" rx="5"
+        fill="none" stroke="#61202a"/>
+  <text x="1099" y="978" text-anchor="middle"
+        fill="#ff3345" font-size="13">●</text>
+
+  <rect x="1128" y="958" width="38" height="30" rx="5"
+        fill="none" stroke="#61202a"/>
+  <text x="1147" y="978" text-anchor="middle"
+        fill="#ff3345" font-size="13">◉</text>
+
+  <rect x="1176" y="958" width="38" height="30" rx="5"
+        fill="none" stroke="#61202a"/>
+  <text x="1195" y="978" text-anchor="middle"
+        fill="#ff3345" font-size="13">▶</text>
+
+  <text x="720" y="998"
+        text-anchor="middle"
+        fill="#707682"
+        font-family="Arial,sans-serif"
+        font-size="11">
+    © 2026 Sentry X. All rights reserved.
+  </text>
 </svg>
